@@ -1,16 +1,16 @@
 const kafka = require("kafka-node");
 
 const client = new kafka.KafkaClient({
-    kafkaHost: '127.0.0.1:9092'
+    kafkaHost: '192.168.209.38:9092'
 });
-
+console.log("////");
 const Consumer = kafka.Consumer;
 const consumer = new Consumer(client, [{
-    topic: "test",
-    partition: 0,
-    offset: 0
+    topic: "test2",
+    partition : 0,
+    offset : 0,
 }], {
-    autoCommit: false
+    autoCommit: true
 });
 
 consumer.on("message", (msg) => {

@@ -1,7 +1,7 @@
 const kafka = require("kafka-node");
 
 const client = new kafka.KafkaClient({
-    kafkaHost: '127.0.0.1:9092'
+    kafkaHost: '192.168.209.38:9092'
 });
 
 const Producer = kafka.Producer;
@@ -9,7 +9,7 @@ const KeyedMessage = kafka.KeyedMessage;
 const producer = new Producer(client);
 
 const topics = [{
-    topic: 'test',
+    topic: 'test2',
     partitions: 1,
     replicationFactor: 1
 } ];
@@ -27,12 +27,12 @@ client.createTopics(topics, (error, result) => {
 producer.on("ready", () => {
     setInterval(() => {
         producer.send([{
-            topic: "test",
-            messages: "hello kafka!!! i'm tianhuihui",
+            topic: "test2",
+            messages: "hello kafka!!! i'm huihui",
         }], (err, data) => {
             console.log("send msg = :" + JSON.stringify(data));
         })
-    },1000)
+    },5000)
 
 });
 producer.on('error', (err) => {
