@@ -1,7 +1,7 @@
 const kafka = require("kafka-node");
 
 const client = new kafka.KafkaClient({
-    kafkaHost: '192.168.209.38:9092'
+    kafkaHost: '192.168.209.36:9092,192.168.209.38:9092,192.168.209.38:9093'
 });
 
 const Producer = kafka.Producer;
@@ -11,8 +11,8 @@ const producer = new Producer(client);
 const topics = [{
     topic: 'test2',
     partitions: 1,
-    replicationFactor: 1
-} ];
+    replicationFactor: 3
+}];
 
 client.createTopics(topics, (error, result) => {
     if(error) {

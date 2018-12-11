@@ -1,7 +1,7 @@
 const kafka = require("kafka-node");
 
 const client = new kafka.KafkaClient({
-    kafkaHost: '192.168.209.38:9092'
+    kafkaHost: '192.168.209.38:9092,192.168.209.36:9092,192.168.209.38:9093'
 });
 console.log("////");
 const Consumer = kafka.Consumer;
