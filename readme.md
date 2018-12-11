@@ -8,3 +8,32 @@ http://mp.weixin.qq.com/s?__biz=MjM5MjE4MjU5OA==&mid=2650796139&idx=1&sn=bbc8284
 此文章我觉得 讲得很好。
 
 最近在测试环境 搭建kafka集群 试试，到时候 整理一下遇到的 坑 再次总结一下，以便后面查找问题 
+
+搭建集群貌似都会碰到 不能解析域名的问题。其实仔细看 官方文档，在下载的kafka目录里面 config/server.properties配置文件里面就有详细的说明：
+摘抄出来 提醒大家 注释写的很清楚
+############################# Socket Server Settings #############################
+
+# The address the socket server listens on. It will get the value returned from 
+# java.net.InetAddress.getCanonicalHostName() if not configured.
+#   FORMAT:
+#     listeners = listener_name://host_name:port
+#   EXAMPLE:
+#     listeners = PLAINTEXT://your.host.name:9092
+listeners=PLAINTEXT://192.168.209.36:9092
+
+# Hostname and port the broker will advertise to producers and consumers. If not set, 
+# it uses the value for "listeners" if configured.  Otherwise, it will use the value
+# returned from java.net.InetAddress.getCanonicalHostName().
+# advertised.listeners=PLAINTEXT://127.0.0.1:9093
+
+还有一种解决办法就是 配置host文件，添加 ip 域名 映射，在集群相互连接时 可以解析到ip建立 socket连接。
+
+初次之外 好像就没有 什么大的 问题了，主要还是 仔细看官方文档，这个很重要 看官方文档
+
+技术算是打通了 ，后续就是配合业务做封装 ，利用。
+
+准备抽空在详细看看其原理。
+
+下一步准备 整整 kafka的周边 kafka监控管理 
+目标使用官方生态 推荐的 kafkamanager,
+
